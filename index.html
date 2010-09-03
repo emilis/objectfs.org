@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html><head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>ObjectFS</title>
+    <style type="text/css">
+        body {
+            padding-bottom: 40em;
+        }
+        a:hover {
+            text-decoration: none;
+        }
+        h1,h2,h3,h4,h5,h6 {
+            font-family: sans-serif;
+            color: #777;
+            margin: 0.5em 0;
+        }
+            h1 > sup {
+                font-weight: normal;
+                font-size: 40%;
+            }
+        hr {
+            clear: both;
+            border: 1px solid #ccc;
+        }
+        dt {
+            font-family: monospace;
+            font-weight: bold;
+            margin: 0.5em 0;
+        }
+            dt > a { text-decoration: none; }
+            dt > a:hover { text-decoration: underline; }
+        dd {
+            margin-bottom: 0.5em;
+        }
+        pre {
+            background-color: #eee;
+            padding: 0.5em;
+            margin-left: 2em;
+        }
+    </style>
+    <meta content="ObjectFS specification and some details." name="description">
+</head><body>
+<h1>{}bjectFS<sup>work in progress</sup></h1>
+<p><b>Specification:</b> <a href="#level0">level0</a> / <a href="#level1">level1</a> / <a href="#level2">level2</a>, <a href="#definitions">terminology</a>.<br>
+<b>Extensions:</b> <a href="#extensions/iterators">+iterators</a>, <a href="#extensions/triggers">+triggers</a>.<br>
+<b>What is this?:</b> <a href="#about">About</a>, <a href="#copyright">Copyright</a>.</p>
+<hr>
+<h2 id="levels">Levels</h2>
+<h3 id="level0">Level0</h3>
+<p><i>Lowest common denominator.</i></p>
+<dl>
+    <dt id="func/read">read( <a href="#define/id">id</a> )</dt>
+        <dd>Reads object from storage.</dd>
+    <dt id="func/write">write( <a href="#define/id">id</a>, object )</dt>
+        <dd>Writes object to storage.</dd>
+    <dt id="func/remove">remove( <a href="#define/id">id</a> )</dt>
+        <dd>Removes object from storage.</dd>
+    <dt id="func/list">list( <a href="#define/filter">filter</a>, <a href="#define/options">options</a> )</dt>
+        <dd>Returns an array of objects matching filter.</dd>
+</dl>
+<h3 id="level1">Level1</h3>
+<p><i>Supporting methods.</i></p>
+<dl>
+    <dt id="func/exists">exists( <a href="#define/id">id</a> )</dt>
+        <dd>Checks if the object exists in storage.</dd>
+    <dt id="func/create">create( <a href="#define/id">id</a>, object )</dt>
+        <dd>Same as write(), but returns false when the object already exists.</dd>
+    <dt id="func/update">update( <a href="#define/id">id</a>, object )</dt>
+        <dd>Same as write(), but returns false when the object does not exist.</dd>
+    <dt id="func/copy">copy( from, to, recursive=false )</dt>
+        <dd>Copies object(s) from one id/path to another.</dd>
+    <dt id="func/move">move( from, to, recursive=false )</dt>
+        <dd>Moves object(s) from one id/path to another.</dd>
+    <dt id="func/count">count( <a href="#define/filter">filter</a>, <a href="#define/options">options</a> )</dt>
+        <dd>Returns a number of objects matching the filter.</dd>
+</dl>
+<h3 id="level2">Level2</h3>
+<p><i>Adding filters everywhere.</i></p>
+<dl>
+    <dt id="func/exists/level2">exists( <a href="#define/filter">filter</a> )</dt>
+        <dd>Checks if any object exists that matches the filter.</dd>
+    <dt id="func/read/level2">read( <a href="#define/filter">filter</a>, <a href="#define/options">options</a> )</dt>
+        <dd>Read the first object matching the filter.</dd>
+    <dt id="func/write/level2">write( <a href="#define/filter">filter</a>, changes )</dt>
+        <dd>Write changes to all objects matching the filter.</dd>
+    <dt id="func/remove/level2">remove( <a href="#define/filter">filter</a>, <a href="#define/options">options</a> )</dt>
+        <dd>Remove all objects matching the filter.</dd>
+    <dt id="func/copy/level2">copy( <a href="#define/filter">filter</a>, destination )</dt>
+        <dd>Copy objects matching the filter to the given destination.</dd>
+    <dt id="func/move/level2">move( <a href="#define/filter">filter</a>, destination )</dt>
+        <dd>Move objects matching the filter to the given destination.</dd>
+</dl>
+<hr size="2" width="100%">
+<h2 id="definitions">Terminology</h2>
+<dl>
+    <dt id="define/id">id</dt>
+        <dd>Unique object identificator. Can be a number, can be a string, can be a path.</dd>
+    <dt id="define/filter">filter</dt>
+        <dd>Can be a string/regexp representing a path in a hierarchical FS or some sort of query (SQL, CSS selectors).</dd>
+        <dd>Preferably an object of the following format:<br>
+<pre>{
+    field1: value,
+    field2: regexp,
+    field3: [ array of values ]
+}</pre></dd>
+    <dt id="define/options">options</dt>
+        <dd>An object with some of these fields:<br>
+        <dl>
+            <dt id="define/options/sort">sort</dt>
+            <dd>An object</dd>
+        </dl></dd>
+</dl>
+<hr>
+<h2 id="extensions">Extensions</h2>
+<h3 id="extensions/iterators">+Iterators</h3>
+<dl>
+    <dt id="func/iterate">iterate( <a href="#define/filter">filter</a>, <a href="#define/options">options</a> )</dt>
+        <dd>Return an iterator for objects matching the filter.</dd>
+</dl>
+<h3 id="extensions/triggers">+Triggers</h3>
+<dl>
+    <dt id="func/addTrigger">addTrigger( event_name, callback )</dt>
+        <dd>Create and event handler for the event.</dd>
+</dl>
+<hr>
+<h2 id="about">About</h2>
+<p>Therea are 3 widely spread data access APIs that are used millions of times every second around the globe: filesystem, relational databases through SQL and URLs.</p>
+<p>Creating objects is very simple in todays dynamic languages &mdash; <code>obj = {}</code> is probably all you need.</p>
+<p>&nbsp;</p>
+<p>Source for this page: <a href="http://github.com/emilis/objectfs">http://github.com/emilis/objectfs</a>.</p>
+<p>Email your suggestions to: Emilis Dambauskas &lt;<a href="mailto:emilis.d@gmail.com">emilis.d@gmail.com</a>&gt;.</p>
+<h2 id="copyright">Copyright</h2>
+<p><b>(cc)</b> Text is available under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike License</a></p>
+</body></html>
