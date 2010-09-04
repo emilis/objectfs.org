@@ -1,0 +1,35 @@
+body {
+    padding-bottom: 40em;
+}
+a:hover {
+    text-decoration: none;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family: sans-serif;
+    color: #777;
+    margin: 0.5em 0;
+}
+    h1 > sup {
+        font-weight: normal;
+        font-size: 40%;
+    }
+hr {
+    clear: both;
+    border: 1px solid #ccc;
+}
+dt {
+    font-family: monospace;
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+    dt > a { text-decoration: none; }
+    dt > a:hover { text-decoration: underline; }
+dd {
+    margin-bottom: 0.5em;
+}
+pre {
+    background-color: #eee;
+    padding: 0.5em;
+    margin-left: 2em;
+}
+
