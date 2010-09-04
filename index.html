@@ -68,7 +68,8 @@
 <pre>{
     field1: value,
     field2: regexp,
-    field3: [ array of values ]
+    field3: [ array of values ],
+    field4: callback_function
 }</pre></dd>
     <dt id="define/options">options</dt>
         <dd>An object with some of these fields:<br>
@@ -77,11 +78,12 @@
                 <dd>How many objects to retrieve.</dd>
             <dt id="define/options/offset">offset</dt>
                 <dd>How many objects to skip before returning the rest.</dd>
-            <dt id="define/options/sort">sort</dt>
+            <dt id="define/options/order">order</dt>
                 <dd>An object specifying how to sort the results. Format:
 <pre>{
     field1: 1, // ascending order
-    field2: -1 // descending order
+    field2: -1, // descending order
+    field3: callback_function
 }</pre></dd>
             <dt id="define/options/fields">fields</dt>
                 <dd>An array of field names that should be returned. Other fields will not be included in returned objects.</dd>
