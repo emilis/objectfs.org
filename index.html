@@ -6,15 +6,19 @@
     <meta content="ObjectFS specification and some details." name="description">
 </head><body>
 <h1>{}bjectFS</h1>
-<p><i>A simple cross-language API for your data.</i></p>
-<p><b>Note:</b> This is a work in progress.<br>
-<b>Specification:</b> <a href="#level0">level0</a> / <a href="#level1">level1</a> / <a href="#level2">level2</a>, <a href="#definitions">definitions</a>.<br>
+<p><em>This is an open specification for writing storage wrappers in JavaScript. It can be used for other scripting languages like Python or PHP too.</em></p>
+
+<p><b>Specification:</b> <a href="#level0">level0</a> / <a href="#level1">level1</a> / <a href="#level2">level2</a>, <a href="#definitions">definitions</a>.<br>
 <b>Extensions:</b>
     <a href="#extensions/iterators">+iterators</a>,
     <a href="#extensions/events">+events</a>,
     <a href="#extensions/serializable">+serializable</a>.
     <br>
-<b>What is this?:</b> <a href="#about">About</a>, <a href="#copyright">Copyright</a>.</p>
+<b>What is this?:</b>
+    <a href="#about">About</a>,
+    <a href="#why">Why?</a>,
+    <a href="#implementations">Implementations</a>,
+    <a href="#copyright">Copyright</a>.</p>
 <hr>
 <h2 id="levels">Levels</h2>
 <h3 id="level0">Level0</h3>
@@ -126,17 +130,33 @@
 </dl>
 <hr>
 <h2 id="about">About</h2>
-<p>This work is a combination of three ideas:</p>
+<p>This page is an open specification. I encourage you to use it when writing data storage drivers.</p>
+
+<h3 id="why">Why?</h3>
 <ul>
-    <li><p>Creating and using typeless objects is very simple in modern dynamic languages &mdash; "<code>{}</code>" is usually all you need. Why not use them for all your data needs and separate them from storage access functions?</p></li>
-    <li><p>Maybe one could use filesystem-like functions for storing these typeless objects? Filesystem is one of the most widely used methods for storing data. It is simple yet powerfull. It could just work even if you keep your data in a database or a key-value store.</p></li>
-    <li><p>Consistent API is a good thing. A decent spec would help. Why not make it public?</p></li> 
+    <li><p>Managing multiple types of storage in a software project can greatly increase its complexity. It can be reduced.</p></li>
+    <li><p>ORM implementations work great for relational databases, but are hard or impossible to use for filesystem storage, key-value stores, etc.</p></li>
+    <li><p>Typeless objects or dictionaries are easy to create and use in scripting languages such as JavaScript and Python. Using them is easier than worrying about underlying class implementations.</p></li>
+    <li><p>You get a documentation for your module for free ;-).</p></li>
 </ul>
-<p>Initial function list inspired by <a href="http://wiki.commonjs.org/">CommonJS</a> <a href="http://wiki.commonjs.org/wiki/Filesystem/A">Filesystem/A</a> proposal.</p>
-<p>I have some CommonJS modules that are implementing this API <a href="http://github.com/emilis/PolicyFeed/tree/refactoring/modules/ctl/objectfs/">here</a>.</p>
+
+<h3 id="implementations">Implementations</h3>
+<p>Some JavaScript modules for storing objects in:</p>
+<ul>
+    <li><a href="https://github.com/emilis/PolicyFeed/blob/master/modules/ctl/objectfs/berkeley.js">BerkeleyDB</a></li>
+    <li><a href="https://github.com/emilis/PolicyFeed/blob/master/modules/ctl/objectfs/dbtable.js">relational database</a></li>
+    <li><a href="https://github.com/emilis/PolicyFeed/blob/master/modules/ctl/objectfs/files.js">filesystem (uneval'ed)</a></li>
+    <li><a href="https://github.com/emilis/PolicyFeed/blob/master/modules/ctl/objectfs/json.js">filesystem (JSON.stringified)</a></li>
+    <li><a href="https://github.com/emilis/PolicyFeed/blob/master/modules/ctl/objectfs/solr.js">Lucene Solr</a></li>
+</ul>
+
 <h3 id="contributing">Contributing</h3>
 <p>You can fork and edit this page <a href="http://github.com/emilis/objectfs">on GitHub</a>.</p>
 <p>Email your suggestions to: Emilis Dambauskas &lt;<a href="mailto:emilis.d@gmail.com">emilis.d@gmail.com</a>&gt;.</p>
+
+<h3 id="credits">Credits</h3>
+<p>Initial function list inspired by <a href="http://wiki.commonjs.org/">CommonJS</a> <a href="http://wiki.commonjs.org/wiki/Filesystem/A">Filesystem/A</a> proposal.</p>
+
 <h2 id="copyright">Copyright</h2>
 <p><b>(cc)</b> This text is available under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike License</a></p>
 </body></html>
