@@ -9,7 +9,11 @@
 <p><i>A simple cross-language API for your data.</i></p>
 <p><b>Note:</b> This is a work in progress.<br>
 <b>Specification:</b> <a href="#level0">level0</a> / <a href="#level1">level1</a> / <a href="#level2">level2</a>, <a href="#definitions">definitions</a>.<br>
-<b>Extensions:</b> <a href="#extensions/iterators">+iterators</a>, <a href="#extensions/events">+events</a>.<br>
+<b>Extensions:</b>
+    <a href="#extensions/iterators">+iterators</a>,
+    <a href="#extensions/events">+events</a>,
+    <a href="#extensions/serializable">+serializable</a>.
+    <br>
 <b>What is this?:</b> <a href="#about">About</a>, <a href="#copyright">Copyright</a>.</p>
 <hr>
 <h2 id="levels">Levels</h2>
@@ -91,17 +95,28 @@
 </dl>
 <hr>
 <h2 id="extensions">Extensions</h2>
+
 <h3 id="extensions/iterators">+Iterators</h3>
 <dl>
     <dt id="func/iterate">iterate( <a href="#define/filter">filter</a>, <a href="#define/options">options</a> )</dt>
         <dd>Return an iterator for objects matching the filter.</dd>
 </dl>
+
 <h3 id="extensions/events">+Events</h3>
 <p><em>Call functions when objects are changed in storage.</em></p>
 <dl>
     <dt id="func/bind">bind( <a href="#define/event">event</a>, <a href="#define/handler">handler</a> )</dt>
         <dd>Register a handler function for an event.</dd>
 </dl>
+
+<h3 id="extensions/serializable">+Serializable</h3>
+<dl>
+    <dt id="func/serialize">serialize( object )</dt>
+    <dd>Return a value that can be written to an associated storage.</dd>
+    <dt id="func/unserialize">unserialize( value )</dt>
+    <dd>Return an object from a value returned by an associated storage.</dd>
+</dl>
+
 <h4 id="extensions/events/definitions">Definitions</h4>
 <dl>
     <dt id="define/event">event</dt>
