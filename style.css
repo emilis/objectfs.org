@@ -1,6 +1,14 @@
 body {
-    padding-bottom: 40em;
+    background-image: url(pattern.png);
 }
+
+#content {
+    margin: 4em auto;
+    background-color: #fff;
+    padding: 20px;
+    width: 600px;
+}
+
 a:hover {
     text-decoration: none;
 }
