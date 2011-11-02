@@ -1,0 +1,19 @@
+---
+layout: master
+---
+<div class="page">
+    <div class="row">
+        <div class="page-menu" class="span4">
+            {% if page.menu == 'introduction' %}
+                {% include introduction %}
+            {% else %}
+                &nbsp;
+            {% endif %}
+        </div>
+        <div class="span9" style="padding-left: 12px;">
+            <h1 class="page-title">{{ page.title }}</h1>
+            <div class="page-content">{{ page.content }}</div>
+        </div>
+    </div>
+</div>
+

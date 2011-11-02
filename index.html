@@ -1,164 +1,38 @@
-<!DOCTYPE html>
-<html><head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-    <title>ObjectFS - a simple cross-language API for your data</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta content="ObjectFS specification and some details." name="description">
-</head><body>
-<div id="content">
-<h1>{}bjectFS</h1>
-<p><em>This is an open specification for writing storage wrappers in JavaScript. It can be used for other scripting languages like Python or PHP too.</em></p>
+---
+title: Easy data plumbing
+layout: master
+---
 
-<p><b>Specification:</b> <a href="#level0">level0</a> / <a href="#level1">level1</a> / <a href="#level2">level2</a>, <a href="#definitions">definitions</a>.<br>
-<b>Extensions:</b>
-    <a href="#extensions/iterators">+iterators</a>,
-    <a href="#extensions/events">+events</a>,
-    <a href="#extensions/serializable">+serializable</a>.
-    <br>
-<b>What is this?:</b>
-    <a href="#about">About</a>,
-    <a href="#why">Why?</a>,
-    <a href="#implementations">Implementations</a>,
-    <a href="#copyright">Copyright</a>.</p>
-<hr>
-<h2 id="levels">Levels</h2>
-<h3 id="level0">Level0</h3>
-<p><i>Lowest common denominator.</i></p>
-<dl>
-    <dt id="func/read">read( <a href="#define/id">id</a> )</dt>
-        <dd>Reads object from storage.</dd>
-    <dt id="func/write">write( <a href="#define/id">id</a>, object )</dt>
-        <dd>Writes object to storage.</dd>
-    <dt id="func/remove">remove( <a href="#define/id">id</a> )</dt>
-        <dd>Removes object from storage.</dd>
-    <dt id="func/list">list( <a href="#define/filter">filter</a>, <a href="#define/options">options</a> )</dt>
-        <dd>Returns an array of objects matching filter.</dd>
-</dl>
-<h3 id="level1">Level1</h3>
-<p><i>Supporting functions.</i></p>
-<dl>
-    <dt id="func/exists">exists( <a href="#define/id">id</a> )</dt>
-        <dd>Checks if the object exists in storage.</dd>
-    <dt id="func/create">create( <a href="#define/id">id</a>, object )</dt>
-        <dd>Same as write(), but returns false when the object already exists.</dd>
-    <dt id="func/update">update( <a href="#define/id">id</a>, object )</dt>
-        <dd>Same as write(), but returns false when the object does not exist.</dd>
-    <dt id="func/copy">copy( from, to, recursive=false )</dt>
-        <dd>Copies object(s) from one id/path to another.</dd>
-    <dt id="func/move">move( from, to, recursive=false )</dt>
-        <dd>Moves object(s) from one id/path to another.</dd>
-    <dt id="func/count">count( <a href="#define/filter">filter</a>, <a href="#define/options">options</a> )</dt>
-        <dd>Returns a number of objects matching the filter.</dd>
-</dl>
-<h3 id="level2">Level2</h3>
-<p><i>Adding filters everywhere.</i></p>
-<dl>
-    <dt id="func/exists/level2">exists( <a href="#define/filter">filter</a> )</dt>
-        <dd>Checks if any object exists that matches the filter.</dd>
-    <dt id="func/read/level2">read( <a href="#define/filter">filter</a>, <a href="#define/options">options</a> )</dt>
-        <dd>Read the first object matching the filter.</dd>
-    <dt id="func/write/level2">write( <a href="#define/filter">filter</a>, changes )</dt>
-        <dd>Write changes to all objects matching the filter.</dd>
-    <dt id="func/remove/level2">remove( <a href="#define/filter">filter</a>, <a href="#define/options">options</a> )</dt>
-        <dd>Remove all objects matching the filter.</dd>
-    <dt id="func/copy/level2">copy( <a href="#define/filter">filter</a>, destination )</dt>
-        <dd>Copy objects matching the filter to the given destination.</dd>
-    <dt id="func/move/level2">move( <a href="#define/filter">filter</a>, destination )</dt>
-        <dd>Move objects matching the filter to the given destination.</dd>
-</dl>
-<hr size="2" width="100%">
-<h2 id="definitions">Definitions</h2>
-<dl>
-    <dt id="define/id">id</dt>
-        <dd>Unique object identificator. Can be a number, can be a string, can be a path.</dd>
-    <dt id="define/filter">filter</dt>
-        <dd>Can be a string/regexp representing a path in a hierarchical FS or some sort of query (SQL, CSS selectors).</dd>
-        <dd>Preferably an object of the following format:<br>
-<pre>{
-    field1: value,
-    field2: regexp,
-    field3: [ array of values ],
-    field4: callback_function
-}</pre></dd>
-    <dt id="define/options">options</dt>
-        <dd>An object with some of these fields:<br>
-        <dl>
-            <dt id="define/options/limit">limit</dt>
-                <dd>How many objects to retrieve.</dd>
-            <dt id="define/options/offset">offset</dt>
-                <dd>How many objects to skip before returning the rest.</dd>
-            <dt id="define/options/order">order</dt>
-                <dd>An object specifying how to sort the results. Format:
-<pre>{
-    field1: 1, // ascending order
-    field2: -1, // descending order
-    field3: callback_function
-}</pre></dd>
-            <dt id="define/options/fields">fields</dt>
-                <dd>An array of field names that should be returned. Other fields will not be included in returned objects.</dd>
-        </dl></dd>
-</dl>
-<hr>
-<h2 id="extensions">Extensions</h2>
-
-<h3 id="extensions/iterators">+Iterators</h3>
-<dl>
-    <dt id="func/iterate">iterate( <a href="#define/filter">filter</a>, <a href="#define/options">options</a> )</dt>
-        <dd>Return an iterator for objects matching the filter.</dd>
-</dl>
-
-<h3 id="extensions/events">+Events</h3>
-<p><em>Call functions when objects are changed in storage.</em></p>
-<dl>
-    <dt id="func/bind">bind( <a href="#define/event">event</a>, <a href="#define/handler">handler</a> )</dt>
-        <dd>Register a handler function for an event.</dd>
-</dl>
-
-<h3 id="extensions/serializable">+Serializable</h3>
-<dl>
-    <dt id="func/serialize">serialize( object )</dt>
-    <dd>Return a value that can be written to an associated storage.</dd>
-    <dt id="func/unserialize">unserialize( value )</dt>
-    <dd>Return an object from a value returned by an associated storage.</dd>
-</dl>
-
-<h4 id="extensions/events/definitions">Definitions</h4>
-<dl>
-    <dt id="define/event">event</dt>
-    <dd>One of: <code>onRead, onWrite, onCreate, onUpdate, onRemove</code>.</dd>
-    <dt id="define/handler">handler</dt>
-    <dd>A function callback that takes three arguments: event name, object id, object.</dd>
-</dl>
-<hr>
-<h2 id="about">About</h2>
-<p>This page is an open specification. I encourage you to use it when writing data storage drivers.</p>
-
-<h3 id="why">Why?</h3>
-<ul>
-    <li><p>Managing multiple types of storage in a software project can greatly increase its complexity. It can be reduced.</p></li>
-    <li><p>ORM implementations work great for relational databases, but are hard or impossible to use for filesystem storage, key-value stores, etc.</p></li>
-    <li><p>Typeless objects or dictionaries are easy to create and use in scripting languages such as JavaScript and Python. Using them is easier than worrying about underlying class implementations.</p></li>
-    <li><p>You get a documentation for your module for free ;-).</p></li>
-</ul>
-
-<h3 id="implementations">Implementations</h3>
-<p>Some JavaScript modules for storing objects in:</p>
-<ul>
-    <li><a href="https://github.com/emilis/PolicyFeed/blob/master/modules/ctl/objectfs/berkeley.js">BerkeleyDB</a></li>
-    <li><a href="https://github.com/emilis/PolicyFeed/blob/master/modules/ctl/objectfs/dbtable.js">relational database</a></li>
-    <li><a href="https://github.com/emilis/PolicyFeed/blob/master/modules/ctl/objectfs/files.js">filesystem (uneval'ed)</a></li>
-    <li><a href="https://github.com/emilis/PolicyFeed/blob/master/modules/ctl/objectfs/json.js">filesystem (JSON.stringified)</a></li>
-    <li><a href="https://github.com/emilis/PolicyFeed/blob/master/modules/ctl/objectfs/solr.js">Lucene Solr</a></li>
-</ul>
-
-<h3 id="contributing">Contributing</h3>
-<p>You can fork and edit this page <a href="http://github.com/emilis/objectfs.org">on GitHub</a>.</p>
-<p>Email your suggestions to: Emilis Dambauskas &lt;<a href="mailto:emilis.d@gmail.com">emilis.d@gmail.com</a>&gt;.</p>
-
-<h3 id="credits">Credits</h3>
-<p>Initial function list inspired by <a href="http://wiki.commonjs.org/">CommonJS</a> <a href="http://wiki.commonjs.org/wiki/Filesystem/A">Filesystem/A</a> proposal.</p>
-
-<h2 id="copyright">Copyright</h2>
-<p><b>(cc)</b> This text is available under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike License</a></p>
+<div id="anouncement">
+        <p>ObjectFS is an open platform for moving data between all kinds of databases, file formats, APIs, etc.</p>
+        <p>A quick example: move all blog posts from <span class="label success">WordPress</span> to <span class="label success">CouchDB</span>:</p>
+        <pre class="prettyprint">$ ofs mirror wordpress://example.org/ couchdb://example.net/blog/</pre>
 </div>
-</body></html>
+<div class="row">
+    <div class="span5">
+        <div class="note">
+            <h3>Learn more:</h3>
+            <ul>
+                <li>A quick introduction</li>
+                <li><code>ofs</code> command</li>
+                <li>Supported storages</li>
+            </ul>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="note">
+            <h3>Supported storages:</h3>
+            <ul>
+                <li>CSV files</li>
+                <li>Sqlite DB</li>
+                <li>... more</li>
+            </ul>
+        </div>
+    </div>
+    <div class="span4">
+        <div class="note">
+            <h3>Download:</h3>
+            {% include download-link.html %}
+        </div>
+    </div>
+</div>
