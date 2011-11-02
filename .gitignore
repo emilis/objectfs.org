@@ -1,6 +1,4 @@
 _site
 *.swp
-files/style.css
-files/script.js
 files/script.min.js
 
