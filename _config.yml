@@ -1,0 +1,5 @@
+
+exclude:
+    - .gitignore
+    - Makefile
+    - files/less/
