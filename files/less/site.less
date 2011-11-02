@@ -1,43 +1,215 @@
+
+
+//@import "bootstrap/bootstrap.less";
+
+// CSS Reset
+@import "bootstrap/reset.less";
+
+// Core variables and mixins
+@import "bootstrap/variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "bootstrap/mixins.less";
+
+// Grid system and page structure
+@import "bootstrap/scaffolding.less";
+
+// Styled patterns and elements
+@import "bootstrap/type.less";
+//@import "bootstrap/forms.less";
+@import "bootstrap/tables.less";
+@import "bootstrap/patterns.less";
+
+
+@smallFont: 15px;
+
 body {
-    background-image: url(pattern.png);
+    background-color: #000;
+    background-image: url(images/pattern.png);
+
+    padding-top: 60px;
+    height: 100% !important;
+    min-height: 100%;
+
+    color: #000;
 }
 
-#content {
-    margin: 4em auto;
-    background-color: #fff;
-    padding: 20px;
-    width: 600px;
-}
-
-a:hover {
-    text-decoration: none;
-}
 h1,h2,h3,h4,h5,h6 {
-    font-family: sans-serif;
-    color: #777;
-    margin: 0.5em 0;
-}
-    h1 > sup {
-        font-weight: normal;
-        font-size: 40%;
-    }
-hr {
-    clear: both;
-    border: 1px solid #ccc;
-}
-dt {
-    font-family: monospace;
-    font-weight: bold;
-    margin: 0.5em 0;
-}
-    dt > a { text-decoration: none; }
-    dt > a:hover { text-decoration: underline; }
-dd {
-    margin-bottom: 0.5em;
-}
-pre {
-    background-color: #eee;
-    padding: 0.5em;
-    margin-left: 2em;
+    color: #333;
 }
 
+li {
+    color: #000;
+}
+
+// --- Mixins: -----
+
+.dark-block {
+    background-color: rgba(0,0,0,0.3);
+    background-image: none;
+    box-shadow: 0 0 10px #222;
+    color: #ccc;
+}
+
+.light-block {
+    background: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px #333;
+}
+
+.light-block, .page-content, footer {
+    a {
+        text-decoration: underline;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+// --- Elements: -----
+
+.topbar {
+    position: absolute;
+
+    .topbar-inner, .fill {
+        .dark-block;
+    }
+
+    .nav {
+        li {
+            //border-right: 1px solid #111;
+            a {
+                font-size: 15px;
+                line-height: 18px;
+            }
+            &.active a,
+            &:hover a {
+                background-color: #191918;
+            }
+        }
+    }
+}
+
+
+#logo {
+
+    a {
+        display: block;
+        font-size: 30px;
+        font-weight: bold;
+        line-height: 2 * @baseline;
+        padding: @baseline 0;
+        color: #fff;
+        text-shadow: 0 0 80px #ddc;
+        text-decoration: none;
+    }
+}
+
+
+footer {
+    .dark-block;
+
+    border-top: none;
+    margin-top: 3 * @baseline;
+    padding: @baseline 0;
+    bottom: 0;
+
+    color: #ccc;
+    p {
+        font-size: @smallFont;
+    }
+}
+
+
+#main-nav {
+    .pagination;
+    margin-bottom: 2 * @baseline;
+    ul {
+        background-color: darken(@blueDark, 10%);
+
+        li {
+            a {
+                color: #ccf;
+            }
+            a:hover {
+                background-color: lighten(@blueDark, 10%);
+                color: #fff;
+            }
+        }
+        li.active > a {
+            background-color: lighten(@blueDark, 10%);
+            color: #fff;
+        }
+
+    }
+}
+
+.note {
+    .light-block;
+    padding: @baseline;
+
+    h3 {
+        line-height: @baseline;
+        margin-bottom: @baseline/2;
+    }
+
+    ul {
+        margin-bottom: @baseline / 2;
+    }
+}
+
+
+#anouncement {
+    .light-block;
+    padding: @baseline;
+    background-color: lighten(@yellow, 30%);
+    margin-bottom: @baseline;
+
+    pre {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+}
+
+.page {
+    padding: @baseline @baseline @baseline 0;
+    background: white;
+    border-radius: 5px;
+}
+
+.page-menu {
+    * { 
+        list-style: none;
+        display: block;
+        font-size: 15px;
+    }
+
+    li {
+        border-bottom: 1px solid #ddd;
+
+        a {
+            line-height: @baseline - 1;
+            padding: 0 @baseline;
+        }
+
+        &.active a,
+        a:hover {
+            background-color: lighten(@gray, 40%);
+        }
+    }
+
+    > ul > li {
+        font-weight: bold;
+    }
+
+    ul ul {
+        margin-left: 0;
+        
+        li {
+            font-weight: normal;
+            a {
+                padding: 0 0 0 2*@baseline;
+            }
+        }
+    }
+
+}
