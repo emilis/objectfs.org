@@ -283,4 +283,8 @@ footer{background-color:rgba(0, 0, 0, 0.3);background-image:none;box-shadow:0 0 
 .page-menu li h3{line-height:47px;padding:0 24px;}
 .page-menu li.active a,.page-menu li.active span,.page-menu li a:hover{background-color:#e6e6e6;}
 .page-menu>ul>li{font-weight:bold;}
-.page-menu ul ul{margin-left:0;}.page-menu ul ul li{font-weight:normal;}.page-menu ul ul li a{padding:0 0 0 48px;}
+.page-menu ul ul{margin-left:0;}.page-menu ul ul ul{display:none;}
+.page-menu ul ul li{font-weight:normal;}.page-menu ul ul li a{padding:0 0 0 48px;}
+#docs-links>li{font-weight:bold;}
+#docs-links ul{font-weight:normal;margin-bottom:24px;}
+#docs-links ul ul{font-size:14px;margin-bottom:0;}

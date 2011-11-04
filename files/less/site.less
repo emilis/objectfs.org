@@ -211,6 +211,10 @@ footer {
 
     ul ul {
         margin-left: 0;
+
+        ul {
+            display: none;
+        }
         
         li {
             font-weight: normal;
@@ -220,4 +224,18 @@ footer {
         }
     }
 
+}
+
+#docs-links {
+    > li {
+        font-weight: bold;
+    }
+    ul {
+        font-weight: normal;
+        margin-bottom: @baseline;
+    }
+    ul ul {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
 }
