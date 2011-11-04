@@ -10,46 +10,11 @@
         <div class="topbar">
           <div class="topbar-inner">
             <div class="container">
-                <div class="span14 offset1">
-                  <ul class="nav secondary-nav">
-                    <li class="active"><a href="/">ObjectFS</a></li>
-                    <li><a href="/blog/">Blog</a></li>
-                    <li><a href="#twitter">Twitter</a></li>
-                    <li><a href="#group">GoogleGroup</a></li>
-                    <li style="border-left: 1px solid #333;"><a href="#like">like</a></li>
-                    <li><a href="#gplus">[+1]</a></li>
-                    <li><a href="#share">Share&raquo;</a></li>
-                    <li><a href="#help">Help!</a></li>
-                  </ul>
-                </div>
+                <div class="span14 offset1">{% include menus/top.html %}</div>
             </div>
           </div>
         </div>
-        <div class="container">
-            <div class="row span14 offset1">
-                <div id="logo" class="span4"><a href="/">ObjectFS</a></div>
-                <div id="main-nav" class="span10">
-                    <ul>
-                        <li class="prev"><a href="{% include download.url %}">Download</a></li>
-                        {% if page.menu == 'introduction' %}
-                            <li class="active">
-                        {% else %}
-                            <li>
-                        {% endif %}
-                        <a href="/learn/">Introduction</a></li>
-                        <li><a href="/docs/">Documentation</a></li>
-                        <li><a href="/report/">Report a bug</a></li>
-                        <li class="next"><a href="/learn/packages/add/">Extend&nbsp;</a></li>
-                    </ul>
-                </div>
-                <div class="row">
-                    <div class="span11 offset1 alert-message error">
-                        <p><b>WARNING:</b> this is still a work in progress. Most things don't work yet.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row span14 offset1">{{ content }}</div>
-        </div>
+        <div class="container">{{ content }}</div>
         <footer>
             <div class="container">
                 <div class="row span14 offset1">
