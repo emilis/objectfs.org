@@ -5,11 +5,11 @@ layout: objectfs
 
 <div id="anouncement">
         <p>ObjectFS is an open platform for moving data between all kinds of databases, file formats, APIs, etc.</p>
-        <p>A quick example: move all blog posts from <span class="label success">WordPress</span> to <span class="label success">CouchDB</span>:</p>
+        <p>A quick example: copy all blog posts from <span class="label success">WordPress</span> to <span class="label success">CouchDB</span>:</p>
         <pre class="prettyprint">$ ofs mirror wordpress://example.org/ couchdb://example.net/blog/</pre>
 </div>
 <div class="row">
-    <div class="span5">
+    <div class="span9">
         <div class="note">
             <h3>Learn more:</h3>
             <ul>
@@ -19,6 +19,7 @@ layout: objectfs
             </ul>
         </div>
     </div>
+    <!--
     <div class="span5">
         <div class="note">
             <h3>Supported storages:</h3>
@@ -29,10 +30,12 @@ layout: objectfs
             </ul>
         </div>
     </div>
-    <div class="span4">
+    -->
+    <div class="span5">
         <div class="note">
-            <h3>Download:</h3>
-            {% include download-link.html %}
+            <h3>Quick download:</h3>
+            <p><a class="btn success" style="display: block" href="{% include download.url %}">Stable version &raquo;<br><small>2011-10-31, 3.7 MB</small></a></p>
+            <p><em>You will need <a href="http://www.java.com/">Java</a> &ge;6  and <a href="http://git.or.cz/">Git</a>.</em></p>
         </div>
     </div>
 </div>
