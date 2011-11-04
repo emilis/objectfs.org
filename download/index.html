@@ -1,0 +1,48 @@
+---
+layout: objectfs-page
+menu: objectfs/download
+menu_id: download
+title: Download
+---
+
+<h2 id="requirements">Requirements:</h2>
+
+<p>You will need:</p>
+<ul>
+    <li><a href="http://www.java.com/">Java</a> 6 or later (7-25 MB download if you don't have it yet).</li>
+    <li><a href="http://git.or.cz/">Git</a> (to update packages).</li>
+    <ul>
+        <li>A properly set-up <a href="http://github.com/">GitHub</a> account if you'll want to publish packages or send patches.</li>
+    </ul>
+</ul>
+
+
+<h2 id="stable">Stable version:</h2>
+
+<p><a class="btn primary" href="https://github.com/downloads/emilis/objectfs/objectfs-2011-10-31.tar.gz">Download<br><small>build 2011-10-31, 3.7 MB</small></a></p>
+
+<h3 id="installation">Installation</h3>
+
+<p>No installation steps are required. Just extract the archive and you can run scripts <code>bin/ofs</code> or <code>bin/ofs-pkg</code>.</p>
+
+<p><em>See also: <a href="#keeping-up-to-date">Keeping up to date</a>.</em></p>
+
+
+<h2 id="development">Development version:</h2>
+
+<p>To get the latest version from GitHub run:</p>
+
+<pre class="prettyprint">$ git clone git://github.com/emilis/objectfs.git
+$ cd objectfs
+$ make build</pre>
+
+
+<h2 id="keeping-up-to-date">Keeping up to date</h2>
+
+<p>Nearly all of ObjectFS functionality is defined in JavaScript <em>packages</em>. You can install and remove these packages using ObjectFS package manager <code>ofs-pkg</code>.</p>
+
+<p>It is advisable to update the package list often by running:</p>
+
+<pre class="prettyprint">$ ofs-pkg upgrade</pre>
+
+<p>You will rarely need to update ObjectFS itself.</p>

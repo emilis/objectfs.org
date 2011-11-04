@@ -9,8 +9,10 @@ layout: objectfs
                 {% include menus/objectfs/introduction.html %}
             {% when 'objectfs/documentation' %}
                 {% include menus/objectfs/documentation.html %}
+            {% when 'objectfs/download' %}
+                {% include menus/objectfs/download.html %}
             {% else %}
-                &nbsp;
+                <div class="span4">&nbsp;</div>
             {% endcase %}
         </div>
         <div class="span9" style="padding-left: 12px;">
