@@ -5,12 +5,12 @@ layout: objectfs
     <div class="row">
         <div class="page-menu" class="span4">
             {% case page.menu %}
-            {% when 'objectfs/introduction' %}
-                {% include menus/objectfs/introduction.html %}
-            {% when 'objectfs/documentation' %}
-                {% include menus/objectfs/documentation.html %}
             {% when 'objectfs/download' %}
                 {% include menus/objectfs/download.html %}
+            {% when 'objectfs/tutorials' %}
+                {% include menus/objectfs/tutorials.html %}
+            {% when 'objectfs/documentation' %}
+                {% include menus/objectfs/documentation.html %}
             {% when 'objectfs/report' %}
                 {% include menus/objectfs/report.html %}
             {% else %}
