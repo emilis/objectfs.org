@@ -1,4 +1,6 @@
 
+alpha: true
+pygments: true
 exclude:
     - .gitignore
     - Makefile

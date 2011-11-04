@@ -4,10 +4,12 @@ layout: master
 <div class="row span14 offset1">
     <div id="logo" class="span4"><a href="/">ObjectFS</a></div>
     <div id="main-nav" class="span10">{% include menus/objectfs.html %}</div>
+    {% if site.alpha %}
     <div class="row">
         <div class="span11 offset1 alert-message error">
             <p><b>WARNING:</b> this is still a work in progress. Most things don't work yet.</p>
         </div>
     </div>
+    {% endif %}
 </div>
 <div class="row span14 offset1">{{ content }}</div>
