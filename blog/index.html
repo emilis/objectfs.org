@@ -1,0 +1,18 @@
+---
+layout: blog
+title: latest posts
+---
+{% for post in site.posts limit:5 %}
+<div class="page">
+    <div class="row">
+        <div class="page-menu" class="span4">
+            <div class="span3 offset1"><h3>{{ post.date | date_to_string }}</h3></div>
+        </div>
+        <div class="span9" style="padding-left: 12px;">
+            <h1 class="page-title"><a href="{{ post.url }}">{{ post.title }}</a></h1>
+            <div class="page-content">{{ post.content }}</div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+

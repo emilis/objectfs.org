@@ -18,8 +18,16 @@
 @import "bootstrap/tables.less";
 @import "bootstrap/patterns.less";
 
+// --- Vars: -----------------------------------------------------------------
 
 @smallFont: 15px;
+
+@menuBlueDark: darken(@blueDark, 10%);
+@menuBlueLight: lighten(@blueDark, 10%);
+
+@menuOrangeDark: darken(@orange, 10%);
+@menuOrangeLight: lighten(@orange, 10%);
+
 
 body {
     background-color: #000;
@@ -123,22 +131,31 @@ footer {
     .pagination;
     margin-bottom: 2 * @baseline;
     ul {
-        background-color: darken(@blueDark, 10%);
+        background-color: @menuBlueDark;
 
         li {
-            a {
-                color: #ccf;
-            }
-            a:hover {
-                background-color: lighten(@blueDark, 10%);
+            a { color: #ccf; }
+
+            &.active > a,
+            > a:hover {
+                background-color: @menuBlueLight;
                 color: #fff;
             }
         }
-        li.active > a {
-            background-color: lighten(@blueDark, 10%);
-            color: #fff;
-        }
+    }
 
+    &.blog ul {
+        background-color: @menuOrangeDark;
+
+        li {
+            a { color: #fec; }
+
+            &.active > a,
+            > a:hover {
+                background-color: @menuOrangeLight;
+                color: #fff;
+            }
+        }
     }
 }
 

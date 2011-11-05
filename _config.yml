@@ -1,6 +1,7 @@
 
 alpha: true
 pygments: true
+permalink: /blog/:year/:month/:day/:title
 exclude:
     - .gitignore
     - Makefile
