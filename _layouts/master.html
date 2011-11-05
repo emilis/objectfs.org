@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{% capture site_date %}{{ site.time | date: '%Y-%m-%d' }}{% endcapture %}
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>{{ page.title }} - ObjectFS.org</title>
-        <link rel="stylesheet" type="text/css" href="/files/style.css">
-        <script src="/files/script.js"></script>
-        <link rel="alternate" type="application/rss+xml" href="http://objectfs.org/atom.xml">
+        <link rel="stylesheet" type="text/css" href="/files/style.css?{{ site_date }}">
+        <script src="/files/script.js?{{ site_date }}"></script>
+        <link rel="alternate" type="application/rss+xml" href="http://objectfs.org/atom.xml?{{ site_date }}">
     </head>
     <body>
         <div class="topbar">
