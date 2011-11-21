@@ -15,7 +15,7 @@ default: make_dev
 ##
 # Compile LESS files:
 #
-LESSC_CMD = nodejs /opt/lessc/bin/lessc
+LESSC_CMD = lessc
 LESSC_OPT = --compress
 LESSC_IN = files/less/site.less
 LESSC_OUT = files/style.css
