@@ -1,0 +1,191 @@
+---
+layout: objectfs-page
+menu: objectfs/documentation
+menu_id: storage-wrapper
+title: Storage wrapper specification
+---
+<p>ObjectFS <em>storage wrapper</em> is a <em>CommonJS module</em> that exports an API documented on this page.</p>
+
+<p>Storage wrapper instances are created by cloning the module exports object. Therefore all connected-instance-specific properties and functions should be exported by the module.</p>
+
+<h2 id="required-functions">Required functions</h2>
+<table class="doc-functions highlight">
+    <thead><tr>
+            <th>result</th>
+            <th>function</th>
+    </tr></thead>
+    <tbody>
+        <tr id="connect"><td>void</td>
+            <td><b>connect</b> (<a href="#params-uri">uri</a>)<br>
+                <blockquote>Connects or configures wrapper instance for a storage.</blockquote></td></tr>
+        <tr id="read"><td>Object</td>
+            <td><b>read</b> (ID)<br>
+                <blockquote>Reads one record from storage.</blockquote></td></tr>
+        <tr id="write"><td>?</td>
+            <td><b>write</b> (ID, record)<br>
+                <blockquote><p>Writes one record to storage.</p>
+                    <p>If ID is <code>false</code>, a new record is created.</p></blockquote></td></tr>
+        <tr id="remove"><td>boolean</td>
+            <td><b>remove</b> (ID)<br>
+                <blockquote>Removes one record from storage.</blockquote></td></tr>
+        <tr id="iterate"><td>Iterator</td>
+            <td><b>iterate</b> (<a href="#params-filter">filter</a>, <a href="#params-options">options</a>)<br>
+                <blockquote>Returns an iterator for all records matching filter.</blockquote></td></tr>
+    </tbody>
+</table>
+
+<h2 id="recommended-functions">Recommended functions</h2>
+<p>Consider implementing at least some of these functions.</p>
+<table class="doc-functions">
+    <thead><tr>
+            <th>result</th>
+            <th>function</th>
+    </tr></thead>
+    <tbody>
+        <tr id="exists"><td>boolean</td>
+            <td><b>exists</b> (ID)<br>
+                <blockquote>Checks if a record for the specified ID exists in the storage.</blockquote></td></tr>
+        <tr id="create"><td>?</td>
+            <td><b>create</b> (ID, record)<br>
+                <blockquote><p>Create a new record in the storage.</p>
+                    <p>ID must be <code>false</code> if the storage should generate it automaticly.</p>
+                    <p>Throws an Error if the record already exists.</p></blockquote></td></tr>
+        <tr id="update"><td>?</td>
+            <td><b>update</b> (ID, record)<br>
+                <blockquote><p>Update an existing record in the storage.</p>
+                    <p>Throws an Error if the record does not exist.</p></blockquote></td></tr>
+        <tr id="list"><td>Array</td>
+            <td><b>list</b> (<a href="#params-filter">filter</a>, <a href="#params-options">options</a>)<br>
+                <blockquote>Returns an Array containing all records matching filter.</blockquote></td></tr>
+        <tr id="count"><td>number</td>
+            <td><b>count</b> (<a href="#params-filter">filter</a>, <a href="#params-options">options</a>)<br>
+                <blockquote>Returns a number of records matching filter in the storage.</blockquote></td></tr>
+        <tr id="copy"><td>number</td>
+            <td><b>copy</b> (<a href="#params-source">src</a>, <a href="#params-source">dest</a>, <a href="#params-options">options</a>)<br>
+                <blockquote>Copies record(s) specified by ID or PATH to destination ID/PATH.</blockquote></td></tr>
+        <tr id="move"><td>number</td>
+            <td><b>move</b> (<a href="#params-source">src</a>, <a href="#params-source">dest</a>, <a href="#params-options">options</a>)<br>
+                <blockquote>Moves record(s) specified by ID or PATH to destination ID/PATH.</blockquote></td></tr>
+    </tbody>
+</table>
+
+<h2 id="extensions">Recommended extensions</h2>
+<p>These functions open an even bigger set of possibilities for using your wrappers. Some of them can be added or changed on top of pre-existing wrappers. Others require a storage-specific implementation.</p>
+
+<h3 id="events">Event binding</h3>
+<table class="doc-functions">
+    <thead><tr>
+            <th>result</th>
+            <th>function</th>
+    </tr></thead>
+    <tbody>
+        <tr><td>Function</td>
+            <td><b>bind</b> (<a href="#params-event-name">event_name</a>, <a href="#params-handler">handler</a>)<br>
+                <blockquote>Binds an event handler for the event.</blockquote></td></tr>
+    </tbody>
+</table>
+
+<h3 id="serialization">Serialization</h3>
+<p>These functions translate record objects into formats used by the storage internally (e.g. a JSON string).</p>
+<p>Also useful for setting auto-generated field values (e.g. record update timestamps).</p>
+<table class="doc-functions">
+    <thead><tr>
+            <th>result</th>
+            <th>function</th>
+    </tr></thead>
+    <tbody>
+        <tr><td>mixed</td>
+            <td><b>serialize</b> (record)<br>
+                <blockquote>Translates record object into internal representation.</blockquote></td></tr>
+        <tr><td>Object</td>
+            <td><b>unserialize</b> (serialized)<br>
+                <blockquote>Translates internal representation to ObjectFS record.</blockquote></td></tr>
+    </tbody>
+</table>
+
+<h3 id="transactions">Transactions</h3>
+<table class="doc-functions">
+    <thead><tr>
+            <th>result</th>
+            <th>function</th>
+    </tr></thead>
+    <tbody>
+        <tr><td>boolean</td>
+            <td><b>beginTransaction</b> (name)<br>
+                <blockquote>Begins a reversible transaction.</blockquote></td></tr>
+        <tr><td>boolean</td>
+            <td><b>completeTransaction</b> (name)<br>
+                <blockquote>Commits or rollbacks a transaction.</blockquote></td></tr>
+        <tr><td>boolean</td>
+            <td><b>failTransaction</b> (name)<br>
+                <blockquote>Fails a transaction (transaction should be rolled-back on completeTransaction).</blockquote></td></tr>
+    </tbody>
+</table>
+
+<h2 id="parameters">Function parameters</h2>
+
+<table class="doc-terms highlight">
+    <thead><tr>
+            <th>term</th>
+            <th>definition</th>
+    </tr></thead>
+    <tbody>
+        <tr id="params-uri"><td>uri</td>
+            <td><p>An object having some of these properties:</p>
+                <table class="doc-terms"><tbody>
+                        <tr><td>uri</td><td>String representation of this uri, e.g.: <code>"mysql://example.org/database/tablename?charset=utf8"</code></td></tr>
+                        <tr><td>schema</td><td>Often called <em>protocol</em>, e.g.: 
+                                <code>"http"</code>, <code>"mysql"</code>.</td></tr>
+                        <tr><td>authority</td><td>Often referred to as <em>server connection</em>, e.g.: 
+                                <code>"username:password@example.org:12345"</code>.</td></tr>
+                        <tr><td>host</td><td>A string with just the hostname of the <em>authority</em>, e.g.:
+                                <code>"example.org"</code>.</td></tr>
+                        <tr><td>path</td><td>Required property.<br>
+                                Path on server or path to a local file, e.g.:
+                                <code>"/etc/passwd"</code>.</td></tr>
+                        <tr><td>query</td><td>A string representing query parameters, e.g.:
+                                <code>"var1=value1<b>,</b>var2=value2"</code>.<br>
+                                <b>Note:</b> parameters must be separated by a comma <code>,</code>, not an ampersand <code>&</code>!</td></tr>
+                        <tr><td>params</td><td>An object representing <em>query</em> parameters, e.g.:
+                                <code>{var1:"value1",var2:"value2"}</code></td></tr>
+                        <tr><td>fragment</td><td>A string after <code>#</code> symbol, e.g.:
+                                <code>"tablename"</code> for uri <code>"sqlite:file.sqlite#tablename"</code>.</td></tr>
+                </tbody></table></td></tr>
+        <tr id="params-filter"><td>filter</td>
+            <td><p>A <code>false</code> value matches all the records.</p>
+                <p>Also can be a string/regexp representing a path in a hierarchical FS, or some sort of query (e.g. SQL statement, CSS selector).</p>
+                <p>Preferably is an object of the following format:</p>
+                <pre class="prettyprint">{
+    field1: value,
+    field2: regexp,
+    field3: [ array of values ],
+    field4: filter_function
+}</pre></td></tr>
+        <tr id="params-options"><td>options</td>
+            <td><p>A <code>false</code> value or an object with some of these fields:</p>
+                <table class="doc-terms"><tbody>
+                        <tr><td>limit</td><td>How many records to retrieve</td></tr>
+                        <tr><td>offset</td><td>How many records to skip before returning the rest.</td></tr>
+                        <tr><td>order</td><td>An object specifying how to sort the results. Format:<pre>{
+    field1: 1, // ascending order
+    field2: -1, // descending order
+    field3: sort_function
+}</pre></td></tr>
+                        <tr><td>fields</td><td>An array of field names that should be returned. Other fields will not be included in returned records.</td></tr>
+                        </tbody></table></td></tr>
+        <tr id="params-source"><td>source,<br>destination</td>
+            <td>An ID of a record or a <em>path</em> representing a group of records.</td></tr>
+        <tr id="params-event-name"><td>event name</td>
+            <td><p>One of the following:</p>
+                <table class="doc-terms"><tbody>
+                        <tr><td>onRead</td><td>Fired after a <a href="#read">read()</a> call.</td></tr>
+                        <tr><td>onWrite</td><td>Fired after a <a href="#write">write()</a> call.</td></tr>
+                        <tr><td>onRemove</td><td>Fired after a <a href="#remove">remove()</a> call.</td></tr>
+                        <tr><td>onCreate</td><td>Fired after a <a href="#create">create()</a> call.</td></tr>
+                        <tr><td>onUpdate</td><td>Fired after a <a href="#update">update()</a> call.</td></tr>
+                </tbody></table>
+                <p><b>Note:</b> onWrite/onCreate/onUpdate order can vary between wrapper implementations.</p></td></tr>
+        <tr id="params-handler"><td>event handler</td>
+            <td>A function that takes three arguments: <a href="#params-event-name">event_name</a>, ID, record.</td></tr>
+    </tbody>
+</table>
