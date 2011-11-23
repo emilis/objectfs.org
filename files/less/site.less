@@ -28,6 +28,9 @@
 @menuOrangeDark: darken(@orange, 10%);
 @menuOrangeLight: lighten(@orange, 10%);
 
+@grayHint: lighten(@gray, 40%);
+@yellowHint: lighten(@yellow, 45%);
+
 
 body {
     background-color: #000;
@@ -46,6 +49,54 @@ h1,h2,h3,h4,h5,h6 {
 
 li {
     color: #000;
+}
+
+table {
+
+    > thead > tr {
+        background-color: lighten(@gray, 45%);
+        font-size: @smallFont;
+        color: @gray;
+    }
+
+    > tbody {
+
+        > tr {
+    
+            &:hover, &:target {
+                > td {
+                    background-color: @yellowHint;
+                    b {
+                        color: @blueDark;
+                    }
+                }
+            }
+
+            > td {
+                border-width: 1px 0;
+                > table > tbody > tr > td {
+                    font-size: @smallFont;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        .box-shadow();
+    }
+    
+    &.highlight {
+        border-color: @blue;
+        > thead > tr {
+            //background-color: @blue;
+            .gradientBar(@blue, @blueDark);
+            color: #fff;
+            > th {
+                border: none;
+            }
+        }
+    }
+
 }
 
 // --- Mixins: -----
@@ -218,7 +269,7 @@ footer {
         &.active a,
         &.active span,
         a:hover {
-            background-color: lighten(@gray, 40%);
+            background-color: @grayHint;
         }
     }
 
@@ -254,5 +305,52 @@ footer {
     ul ul {
         font-size: 14px;
         margin-bottom: 0;
+    }
+}
+
+table.doc-functions {
+
+    > tbody {
+
+        > tr {
+
+            > td {
+
+                &:first-child {
+                    text-align: right;
+                    font-size: @smallFont;
+                    color: @grayDark;
+                }
+
+                > blockquote {
+                    margin-bottom: 0;
+                    font-size: @smallFont;
+                    color: @gray;
+                }
+            }
+
+            &:hover {
+                > td {
+                    color: black;
+                    blockquote {
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
+}
+
+table.doc-terms {
+    > tbody > tr {
+        > td:first-child {
+            font-weight: bold;
+        }
+
+        &:hover, &:target {
+            > td:first-child {
+                color: @blueDark;
+            }
+        }
     }
 }
