@@ -1,0 +1,38 @@
+---
+layout: objectfs-page
+menu: objectfs/documentation
+menu_id: storage-types
+title: Supported storage types
+---
+<p>Support for different storage types is implemented in ObjectFS packages.</p>
+
+<p>ObjectFS parses storage URIs that you provide and finds the appropriate package from this table<a href="#uri-config"><sup>1</sup></a>:</p>
+
+<table class="highlight">
+    <thead>
+        <tr><td>Matching package</td>
+            <td>scheme:</td>
+            <td>//host</td>
+            <td>/path</td></tr>
+    </thead>
+    <tbody>
+        <tr><td rowspan="2"><a href="https://github.com/emilis/objectfs-core">objectfs-core</a><br>
+                <small>ObjectFS core library</small></td>
+            <td>csv</td>
+            <td>*</td>
+            <td>*</td></tr>
+        <tr><td>*</td>
+            <td>*</td>
+            <td>*.csv</td></tr>
+        <tr><td rowspan="2"><a href="https://github.com/emilis/ofs-sqlite">ofs-sqlite</a><br>
+                <small>ObjectFS storage wrapper for Sqlite</small></td>
+            <td>sqlite</td>
+            <td>*</td>
+            <td>*</td></tr>
+        <tr><td>*</td>
+            <td>*</td>
+            <td>*.sqlite</td></tr>
+    </tbody>
+</table>
+
+<p id="uri-config"><sup>1</sup> You can change your local URI matching table. It is stored in <code>../objectfs/config/uri_map.csv</code>.</p>
