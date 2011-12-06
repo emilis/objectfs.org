@@ -1,0 +1,33 @@
+---
+layout: objectfs-page
+menu: objectfs/documentation
+menu_id: glossary
+title: Glossary of terms
+---
+
+<table class="doc-terms highlight">
+    <thead><tr>
+            <th>Term(s)</th>
+            <th>Description</th>
+    </tr></thead>
+    <tbody>
+        <tr><td>Storage</td>
+            <td><p>Anything that can be <em>used</em> as a <em>set of records</em>.</p>
+                <p>Examples: DB table, list of databases on server, CSV file, RSS feed, results from an API call, directory full of image files, etc..</p></td></tr>
+        <tr><td>Record</td>
+            <td><p>Anything that can be expressed as a JSON object (strings for keys and a few value types).</p>
+                <p>Example: <code>{id:123,name:"Item 1"}</code>.</p></td></tr>
+        <tr><td>URI,<br>Storage URI</td>
+            <td><p><em>Universal Resource Identifier</em> &ndash; a string that represents a single storage.</p>
+                <p>Example: <code>mysql://example.org/database/table</code>.</p></td></tr>
+        <tr><td>Wrapper,<br>Storage wrapper</td>
+            <td><p>A JavaScript module that provides a <a href="/docs/storage-wrapper.html">standard interface</a> for working with records in a storage.</p></td></tr>
+        <tr><td>ID,<br>Record ID</td>
+            <td><p>A value (number/string/?) that identifies a single record within a storage.</p></td></tr>
+        <tr><td>Path</td>
+            <td><p>A string that identifies a part of a storage.<br>Example: <code>/var/log/nginx/</code> -- just the nginx log files.</p></td></tr>
+        <tr><td>(ObjectFS) Package</td>
+            <td><p>A collection of modules, code and other assets conforming to <a href="http://wiki.commonjs.org/wiki/Packages/1.0">CommonJS Package specification</a>. You can install, update and remove packages using the ObjectFS package manager <em>ofs-pkg</em>.</p>
+                <p>Example: <a href="https://github.com/emilis/ofs-sqlite">ofs-sqlite</a> package.</p></td></tr>
+    </tbody>
+</table>
