@@ -20,7 +20,7 @@
 
 // --- Vars: -----------------------------------------------------------------
 
-@smallFont: 15px;
+@smallFont: 13px;
 
 @menuBlueDark: darken(@blueDark, 10%);
 @menuBlueLight: lighten(@blueDark, 10%);
@@ -31,11 +31,16 @@
 @grayHint: lighten(@gray, 40%);
 @yellowHint: lighten(@yellow, 45%);
 
+html, body {
+    background-color: #000;
+}
+
+body, td, th {
+    font-family: Helvetica Neue, Arial, sans-serif;
+}
 
 body {
-    background-color: #000;
     background-image: url(images/pattern.png);
-
     padding-top: 60px;
     height: 100% !important;
     min-height: 100%;
@@ -47,16 +52,31 @@ h1,h2,h3,h4,h5,h6 {
     color: #333;
 }
 
+a {
+    color: @blueDark;
+}
+
+
 li {
     color: #000;
 }
 
+pre {
+    font-size: 14px;
+    line-height: 20px;
+}
+
 table {
+
+    border-radius: 3px;
 
     > thead > tr {
         background-color: lighten(@gray, 45%);
         font-size: @smallFont;
         color: @gray;
+        > th {
+            padding: 5px 11px 5px;
+        }
     }
 
     > tbody {
@@ -66,9 +86,6 @@ table {
             &:hover, &:target {
                 > td {
                     background-color: @yellowHint;
-                    b {
-                        color: @blueDark;
-                    }
                 }
             }
 
@@ -83,16 +100,26 @@ table {
 
     &:hover {
         .box-shadow();
+        > thead > tr > th {
+            color: #333;
+            text-shadow: 1px 1px 1px #fff;
+        }
     }
     
     &.highlight {
         border-color: @blue;
         > thead > tr {
-            //background-color: @blue;
-            .gradientBar(@blue, @blueDark);
+            background-color: @blueDark;
+            //.gradientBar(@blue, @blueDark);
             color: #fff;
             > th {
                 border: none;
+            }
+        }
+        &:hover {
+            > thead > tr > th {
+                color: #fff;
+                text-shadow: 1px 1px 1px darken(@blueDark, 15%);
             }
         }
     }
@@ -102,9 +129,8 @@ table {
 // --- Mixins: -----
 
 .dark-block {
-    background-color: rgba(0,0,0,0.3);
+    background-color: #000;
     background-image: none;
-    box-shadow: 0 0 10px #222;
     color: #ccc;
 }
 
@@ -112,6 +138,9 @@ table {
     background: #f5f5f5;
     border-radius: 5px;
     box-shadow: 1px 1px 3px #333;
+    &:hover {
+        box-shadow: 1px 1px 3px #ccc;
+    }
 }
 
 .light-block, .page-content, footer {
@@ -130,13 +159,14 @@ table {
 
     .topbar-inner, .fill {
         .dark-block;
+        border-bottom: 1px solid #111;
     }
 
     .nav {
         li {
             //border-right: 1px solid #111;
             a {
-                font-size: 15px;
+                //font-size: 15px;
                 line-height: 18px;
             }
             &.active a,
@@ -150,14 +180,16 @@ table {
 
 #logo {
 
+    margin-left: 0;
+
     a {
         display: block;
-        font-size: 30px;
+        font-size: 48px;
         font-weight: bold;
         line-height: 2 * @baseline;
         padding: @baseline 0;
-        color: #fff;
-        text-shadow: 0 0 80px #ddc;
+        color: #ffe;
+        text-shadow: 0 0 80px #ddb;
         text-decoration: none;
     }
 }
@@ -166,7 +198,7 @@ table {
 footer {
     .dark-block;
 
-    border-top: none;
+    border-top: 1px solid #111;
     margin-top: 3 * @baseline;
     padding: @baseline 0;
     bottom: 0;
@@ -180,12 +212,17 @@ footer {
 
 #main-nav {
     .pagination;
+    float: right;
     margin-bottom: 2 * @baseline;
-    ul {
+    > ul {
+        float: right;
         background-color: @menuBlueDark;
 
         li {
-            a { color: #ccf; }
+            a { 
+                color: #ccf;
+                text-shadow: 1px 1px 1px #00c;
+            }
 
             &.active > a,
             > a:hover {
@@ -199,7 +236,10 @@ footer {
         background-color: @menuOrangeDark;
 
         li {
-            a { color: #fec; }
+            a {
+                color: #fec;
+                text-shadow: 1px 1px 1px #960;
+            }
 
             &.active > a,
             > a:hover {
@@ -231,8 +271,13 @@ footer {
     background-color: lighten(@yellow, 30%);
     margin-bottom: @baseline;
 
+    > p {
+        font-size: 18px;
+        line-height: 26px;
+    }
+
     pre {
-        font-size: 14px;
+        //font-size: 14px;
         font-weight: bold;
         margin-bottom: 0;
     }
@@ -242,39 +287,42 @@ footer {
     padding: @baseline @baseline 4*@baseline 0;
     background: white;
     border-radius: 5px;
+    box-shadow: 1px 1px 3px #666;
 }
 
 .page-menu {
     * { 
         list-style: none;
         display: block;
-        span, a {
-            font-size: 15px;
-        }
     }
 
     li {
-        border-bottom: 1px solid #bbb;
+        border-bottom: 1px solid #ddd;
 
         a, span {
-            line-height: @baseline - 1;
-            padding: 0 @baseline;
+            line-height: @baseline;
+            padding: 5px 0 5px @baseline;
+            border-right: 1px solid #ddd;
         }
 
         h3 {
-            line-height: 2*@baseline - 1;
-            padding: 0 @baseline;
+            line-height: @baseline;
+            padding: 11px 0 10px @baseline;
         }
 
         &.active a,
         &.active span,
         a:hover {
             background-color: @grayHint;
+            color: #000;
+            text-shadow: 1px 1px 1px #fff;
+            text-decoration: undeline;
         }
     }
 
     > ul > li {
         font-weight: bold;
+        > a { text-decoration: underline; }
     }
 
     ul ul {
@@ -287,7 +335,9 @@ footer {
         li {
             font-weight: normal;
             a {
-                padding: 0 0 0 2*@baseline;
+                //padding-left: 2*@baseline;
+                //font-size: @smallFont;
+                //text-decoration: none;
             }
         }
     }
@@ -322,10 +372,8 @@ table.doc-functions {
                     color: @grayDark;
                 }
 
-                > blockquote {
+                > p {
                     margin-bottom: 0;
-                    border-left: none;
-                    padding-left: @baseline;
                     font-size: @smallFont;
                     color: @gray;
                 }
@@ -334,7 +382,7 @@ table.doc-functions {
             &:hover {
                 > td {
                     color: black;
-                    blockquote {
+                    > p {
                         color: black;
                     }
                 }
@@ -347,12 +395,6 @@ table.doc-terms {
     > tbody > tr {
         > td:first-child {
             font-weight: bold;
-        }
-
-        &:hover, &:target {
-            > td:first-child {
-                color: @blueDark;
-            }
         }
     }
 }

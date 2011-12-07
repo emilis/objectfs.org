@@ -17,20 +17,20 @@ title: Storage wrapper specification
     <tbody>
         <tr id="connect"><td>void</td>
             <td><b>connect</b> (<a href="#params-uri">uri</a>)<br>
-                <blockquote>Connects or configures wrapper instance for a storage.</blockquote></td></tr>
+                <p>Connects or configures wrapper instance for a storage.</p></td></tr>
         <tr id="read"><td>Object</td>
             <td><b>read</b> (ID)<br>
-                <blockquote>Reads one record from storage.</blockquote></td></tr>
+                <p>Reads one record from storage.</p></td></tr>
         <tr id="write"><td>?</td>
             <td><b>write</b> (ID, record)<br>
-                <blockquote><p>Writes one record to storage.</p>
-                    <p>If ID is <code>false</code>, a new record is created.</p></blockquote></td></tr>
+                <p><p>Writes one record to storage.</p>
+                    <p>If ID is <code>false</code>, a new record is created.</p></p></td></tr>
         <tr id="remove"><td>boolean</td>
             <td><b>remove</b> (ID)<br>
-                <blockquote>Removes one record from storage.</blockquote></td></tr>
+                <p>Removes one record from storage.</p></td></tr>
         <tr id="iterate"><td>Iterator</td>
             <td><b>iterate</b> (<a href="#params-filter">filter</a>, <a href="#params-options">options</a>)<br>
-                <blockquote>Returns an iterator for all records matching filter.</blockquote></td></tr>
+                <p>Returns an iterator for all records matching filter.</p></td></tr>
     </tbody>
 </table>
 
@@ -44,28 +44,28 @@ title: Storage wrapper specification
     <tbody>
         <tr id="exists"><td>boolean</td>
             <td><b>exists</b> (ID)<br>
-                <blockquote>Checks if a record for the specified ID exists in the storage.</blockquote></td></tr>
+                <p>Checks if a record for the specified ID exists in the storage.</p></td></tr>
         <tr id="create"><td>?</td>
             <td><b>create</b> (ID, record)<br>
-                <blockquote><p>Create a new record in the storage.</p>
+                <p><p>Create a new record in the storage.</p>
                     <p>ID must be <code>false</code> if the storage should generate it automaticly.</p>
-                    <p>Throws an Error if the record already exists.</p></blockquote></td></tr>
+                    <p>Throws an Error if the record already exists.</p></p></td></tr>
         <tr id="update"><td>?</td>
             <td><b>update</b> (ID, record)<br>
-                <blockquote><p>Update an existing record in the storage.</p>
-                    <p>Throws an Error if the record does not exist.</p></blockquote></td></tr>
+                <p><p>Update an existing record in the storage.</p>
+                    <p>Throws an Error if the record does not exist.</p></p></td></tr>
         <tr id="list"><td>Array</td>
             <td><b>list</b> (<a href="#params-filter">filter</a>, <a href="#params-options">options</a>)<br>
-                <blockquote>Returns an Array containing all records matching filter.</blockquote></td></tr>
+                <p>Returns an Array containing all records matching filter.</p></td></tr>
         <tr id="count"><td>number</td>
             <td><b>count</b> (<a href="#params-filter">filter</a>, <a href="#params-options">options</a>)<br>
-                <blockquote>Returns a number of records matching filter in the storage.</blockquote></td></tr>
+                <p>Returns a number of records matching filter in the storage.</p></td></tr>
         <tr id="copy"><td>number</td>
             <td><b>copy</b> (<a href="#params-source">src</a>, <a href="#params-source">dest</a>, <a href="#params-options">options</a>)<br>
-                <blockquote>Copies record(s) specified by ID or PATH to destination ID/PATH.</blockquote></td></tr>
+                <p>Copies record(s) specified by ID or PATH to destination ID/PATH.</p></td></tr>
         <tr id="move"><td>number</td>
             <td><b>move</b> (<a href="#params-source">src</a>, <a href="#params-source">dest</a>, <a href="#params-options">options</a>)<br>
-                <blockquote>Moves record(s) specified by ID or PATH to destination ID/PATH.</blockquote></td></tr>
+                <p>Moves record(s) specified by ID or PATH to destination ID/PATH.</p></td></tr>
     </tbody>
 </table>
 
@@ -81,7 +81,7 @@ title: Storage wrapper specification
     <tbody>
         <tr><td>Function</td>
             <td><b>bind</b> (<a href="#params-event-name">event_name</a>, <a href="#params-handler">handler</a>)<br>
-                <blockquote>Binds an event handler for the event.</blockquote></td></tr>
+                <p>Binds an event handler for the event.</p></td></tr>
     </tbody>
 </table>
 
@@ -96,10 +96,10 @@ title: Storage wrapper specification
     <tbody>
         <tr><td>mixed</td>
             <td><b>serialize</b> (record)<br>
-                <blockquote>Translates record object into internal representation.</blockquote></td></tr>
+                <p>Translates record object into internal representation.</p></td></tr>
         <tr><td>Object</td>
             <td><b>unserialize</b> (serialized)<br>
-                <blockquote>Translates internal representation to ObjectFS record.</blockquote></td></tr>
+                <p>Translates internal representation to ObjectFS record.</p></td></tr>
     </tbody>
 </table>
 
@@ -112,13 +112,13 @@ title: Storage wrapper specification
     <tbody>
         <tr><td>boolean</td>
             <td><b>beginTransaction</b> (name)<br>
-                <blockquote>Begins a reversible transaction.</blockquote></td></tr>
+                <p>Begins a reversible transaction.</p></td></tr>
         <tr><td>boolean</td>
             <td><b>completeTransaction</b> (name)<br>
-                <blockquote>Commits or rollbacks a transaction.</blockquote></td></tr>
+                <p>Commits or rollbacks a transaction.</p></td></tr>
         <tr><td>boolean</td>
             <td><b>failTransaction</b> (name)<br>
-                <blockquote>Fails a transaction (transaction should be rolled-back on completeTransaction).</blockquote></td></tr>
+                <p>Fails a transaction (transaction should be rolled-back on completeTransaction).</p></td></tr>
     </tbody>
 </table>
 
