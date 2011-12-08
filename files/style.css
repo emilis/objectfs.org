@@ -260,7 +260,7 @@ a{color:#0064cd;}
 li{color:#000;}
 pre{font-size:14px;line-height:20px;}
 table{border-radius:3px;}table>thead>tr{background-color:#f2f2f2;font-size:13px;color:#808080;}table>thead>tr>th{padding:5px 11px 5px;}
-table>tbody>tr:hover>td,table>tbody>tr:target>td{background-color:#fffcf3;}
+table>tbody>tr:hover>td,table>tbody>tr:target>td{background-color:#fff6d9;}
 table>tbody>tr>td{border-width:1px 0;}table>tbody>tr>td>table>tbody>tr>td{font-size:13px;}
 table:hover{-webkit-box-shadow:0 1px 3px rgba(0, 0, 0, 0.25);-moz-box-shadow:0 1px 3px rgba(0, 0, 0, 0.25);box-shadow:0 1px 3px rgba(0, 0, 0, 0.25);}table:hover>thead>tr>th{color:#333;text-shadow:1px 1px 1px #fff;}
 table.highlight{border-color:#049cdb;}table.highlight>thead>tr{background-color:#0064cd;color:#fff;}table.highlight>thead>tr>th{border:none;}
@@ -305,4 +305,14 @@ footer{background-color:#000;background-image:none;color:#ccc;border-top:1px sol
 table.doc-functions>tbody>tr>td:first-child{text-align:right;font-size:13px;color:#404040;}
 table.doc-functions>tbody>tr>td>p{margin-bottom:0;font-size:13px;color:#808080;}
 table.doc-functions>tbody>tr:hover>td{color:black;}table.doc-functions>tbody>tr:hover>td>p{color:black;}
-table.doc-terms>tbody>tr>td:first-child{font-weight:bold;}
+table.doc-terms>tbody>tr>td{background-color:#fff;}
+table.doc-terms>tbody>tr>td:first-child{font-weight:bold;background-color:#f2f2f2;}
+table.doc-terms>tbody>tr:hover>td:first-child{background-color:#e6e6e6;text-shadow:1px 1px 1px #fff;}
+table.doc-terms>tbody>tr:hover>td{background-color:#fff6d9;}
+table.dirlisting>tbody>tr>td{padding:5px 11px;background-color:#fff;}table.dirlisting>tbody>tr>td:first-child{background-color:#f2f2f2;border-right:1px solid #e6e6e6;width:10em;}
+table.dirlisting>tbody>tr>td.dir{font-weight:bold;}
+table.dirlisting>tbody>tr>td.level2{padding-left:33px;}
+table.dirlisting>tbody>tr>td.level3{padding-left:55px;}
+table.dirlisting>tbody>tr>td.container{background-color:#fff;padding:0 22px;}table.dirlisting>tbody>tr>td.container>table{margin:0;border:1px dashed #808080;}
+table.dirlisting>tbody>tr:hover>td:first-child{background-color:#e6e6e6;text-shadow:1px 1px 1px #fff;}
+table.dirlisting>tbody>tr:hover>td,table.dirlisting>tbody>tr:hover>td.container{background-color:#fff6d9;}

@@ -29,7 +29,7 @@
 @menuOrangeLight: lighten(@orange, 10%);
 
 @grayHint: lighten(@gray, 40%);
-@yellowHint: lighten(@yellow, 45%);
+@yellowHint: lighten(@yellow, 40%);
 
 html, body {
     background-color: #000;
@@ -393,8 +393,65 @@ table.doc-functions {
 
 table.doc-terms {
     > tbody > tr {
+        > td {
+            background-color: #fff;
+        }
         > td:first-child {
             font-weight: bold;
+            background-color: lighten(@gray, 45%);
+        }
+
+        &:hover {
+            > td:first-child {
+                background-color: @grayLighter;
+                text-shadow: 1px 1px 1px #fff;
+            }
+            > td {
+                background-color: @yellowHint;
+            }
+        }
+
+    }
+}
+
+table.dirlisting {
+    > tbody > tr {
+    
+        > td {
+            padding: 5px 11px;
+            background-color: #fff;
+
+            &:first-child {
+                background-color: lighten(@gray, 45%);
+                border-right: 1px solid @grayLighter;
+                width: 10em;
+            }
+
+            &.dir {
+                font-weight: bold;
+            }
+
+            &.level2 { padding-left: 33px; }
+            &.level3 { padding-left: 55px; }
+            &.container {
+                background-color: #fff;
+                padding: 0 @baseline;
+                > table {
+                    margin: 0;
+                    border: 1px dashed @gray;
+                }
+            }
+        }
+
+        &:hover {
+            > td:first-child {
+                background-color: @grayLighter;
+                text-shadow: 1px 1px 1px #fff;
+            }
+            > td, > td.container {
+                background-color: @yellowHint;
+            }
         }
     }
 }
+
