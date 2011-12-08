@@ -1,0 +1,75 @@
+---
+layout: objectfs-page
+menu: objectfs/documentation
+menu_id: architecture 
+title: General architecture
+---
+
+<ul>
+    <li><a href="#execution">Execution and application structure</a></li>
+    <li><a href="#files">Directories and files</a></li>
+</ul>
+
+<h2 id="execution" style="margin-bottom: 22px;">Execution and application structure</h2>
+
+<p><img src="/files/images/architecture1.svg" type="image/svg+xml" width="506" height="572" alt="Application module structure"></p>
+
+<h2 id="files" style="margin-bottom: 22px;">Directories and files</h2>
+
+<table class="dirlisting">
+    <thead><tr>
+            <th>path</th>
+            <th>description</th>
+    </tr></thead>
+    <tbody>
+        <tr><td class="dir">bin/</td>
+            <td>Shell scripts.</td></tr>
+        <tr><td class="level2">ofs</td>
+            <td><code>ofs</code> program.</td></tr>
+        <tr><td class="level2">ofs-pkg</td>
+            <td><code>ofs-pkg</code> program (a link to <em>ofs</em>).</td></tr>
+        <tr><td class="dir">config/</td>
+            <td>Configuration files.</td></tr>
+        <tr><td class="level2">config.js</td>
+            <td>RingoJS and module configuration.</td></tr>
+        <tr><td class="level2">uri_map.csv</td>
+            <td>Local URI &rarr; Storage type matching table.</td></tr>
+        <tr><td class="dir">lib/...</td>
+            <td>Java libraries used by RingoJS.</td></tr>
+        <tr><td>Makefile</td>
+            <td><code>make</code> script to build ObjectFS releases.</td></tr>
+        <tr><td class="dir">packages/</td>
+            <td>ObjectFS packages</td></tr>
+        <tr><td colspan="2" class="container">
+                <table class="dirlisting"><tbody>
+                        <tr><td class="dir">objectfs-core/...</td>
+                            <td>ObjectFS core library.</td></tr>
+                </tbody></table>
+                <table class="dirlisting"><tbody>
+                        <tr><td class="dir">objectfs-packages/...</td>
+                            <td>ObjectFS package database.</td></tr>
+                </tbody></table>
+                <table class="dirlisting"><tbody>
+                        <tr><td class="dir"><em>somepackage/</em></td>
+                            <td>An example package.</td></tr>
+                        <tr><td class="level2">index.js</td>
+                            <td>Main module for package.</td></tr>
+                        <tr><td class="level2 dir">lib/</td>
+                            <td>Submodule directory.</td></tr>
+                        <tr><td class="level3">submodule.js</td>
+                            <td>Another module exported by the package.</td></tr>
+                        <tr><td class="level2 dir">jars/...</td>
+                            <td>Java libraries used by package.</td></tr>
+                        <tr><td class="level2">package.json</td>
+                            <td>Package metadata.</td></tr>
+                        <tr><td class="level2">README.md</td>
+                            <td>Package description.</td></tr>
+                </tbody></table>
+                <p>...</p>
+        </td></tr>
+        <tr><td>README.md</td>
+            <td>GitHub repository readme file.</td></tr>
+        <tr><td>run.jar</td>
+            <td>Java program to start RingoJS and ObjectFS</td></tr>
+    </tbody>
+</table>
