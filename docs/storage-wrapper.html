@@ -21,16 +21,16 @@ title: Storage wrapper specification
         <tr id="read"><td>Object</td>
             <td><b>read</b> (ID)<br>
                 <p>Reads one record from storage.</p></td></tr>
-        <tr id="write"><td>?</td>
+        <tr id="iterate"><td>Iterator</td>
+            <td><b>iterate</b> (<a href="#params-filter">filter</a>, <a href="#params-options">options</a>)<br>
+                <p>Returns an iterator for all records matching filter.</p></td></tr>
+        <tr id="write"><td>boolean / ID</td>
             <td><b>write</b> (ID, record)<br>
                 <p><p>Writes one record to storage.</p>
                     <p>If ID is <code>false</code>, a new record is created.</p></p></td></tr>
         <tr id="remove"><td>boolean</td>
             <td><b>remove</b> (ID)<br>
                 <p>Removes one record from storage.</p></td></tr>
-        <tr id="iterate"><td>Iterator</td>
-            <td><b>iterate</b> (<a href="#params-filter">filter</a>, <a href="#params-options">options</a>)<br>
-                <p>Returns an iterator for all records matching filter.</p></td></tr>
     </tbody>
 </table>
 
@@ -48,27 +48,29 @@ title: Storage wrapper specification
         <tr id="exists"><td>boolean</td>
             <td><b>exists</b> (ID)<br>
                 <p>Checks if a record for the specified ID exists in the storage.</p></td></tr>
-        <tr id="create"><td>?</td>
-            <td><b>create</b> (ID, record)<br>
-                <p><p>Create a new record in the storage.</p>
-                    <p>ID must be <code>false</code> if the storage should generate it automaticly.</p>
-                    <p>Throws an Error if the record already exists.</p></p></td></tr>
-        <tr id="update"><td>?</td>
-            <td><b>update</b> (ID, record)<br>
-                <p><p>Update an existing record in the storage.</p>
-                    <p>Throws an Error if the record does not exist.</p></p></td></tr>
         <tr id="list"><td>Array</td>
             <td><b>list</b> (<a href="#params-filter">filter</a>, <a href="#params-options">options</a>)<br>
                 <p>Returns an Array containing all records matching filter.</p></td></tr>
         <tr id="count"><td>number</td>
             <td><b>count</b> (<a href="#params-filter">filter</a>, <a href="#params-options">options</a>)<br>
                 <p>Returns a number of records matching filter in the storage.</p></td></tr>
+        <tr id="create"><td>boolean / ID</td>
+            <td><b>create</b> (ID, record)<br>
+                <p><p>Create a new record in the storage.</p>
+                    <p>ID must be <code>false</code> if the storage should generate it automaticly.</p>
+                    <p>Throws an Error if the record already exists.</p></p></td></tr>
+        <tr id="update"><td>boolean / number</td>
+            <td><b>update</b> (ID, record)<br>
+                <p><p>Update an existing record in the storage.</p>
+                    <p>Throws an Error if the record does not exist.</p></p></td></tr>
+        <!--
         <tr id="copy"><td>number</td>
             <td><b>copy</b> (<a href="#params-source">src</a>, <a href="#params-source">dest</a>, <a href="#params-options">options</a>)<br>
                 <p>Copies record(s) specified by ID or PATH to destination ID/PATH.</p></td></tr>
         <tr id="move"><td>number</td>
             <td><b>move</b> (<a href="#params-source">src</a>, <a href="#params-source">dest</a>, <a href="#params-options">options</a>)<br>
                 <p>Moves record(s) specified by ID or PATH to destination ID/PATH.</p></td></tr>
+        -->
     </tbody>
 </table>
 
@@ -137,7 +139,7 @@ title: Storage wrapper specification
             <td><p>An object having some of these properties:</p>
                 <table class="doc-terms"><tbody>
                         <tr><td>uri</td><td>String representation of this uri, e.g.: <code>"mysql://example.org/database/tablename?charset=utf8"</code></td></tr>
-                        <tr><td>schema</td><td>Often called <em>protocol</em>, e.g.: 
+                        <tr><td>scheme</td><td>Often called <em>protocol</em>, e.g.: 
                                 <code>"http"</code>, <code>"mysql"</code>.</td></tr>
                         <tr><td>authority</td><td>Often referred to as <em>server connection</em>, e.g.: 
                                 <code>"username:password@example.org:12345"</code>.</td></tr>
