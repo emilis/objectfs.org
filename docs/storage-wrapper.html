@@ -108,6 +108,24 @@ title: Storage wrapper specification
     </tbody>
 </table>
 
+<h3 id="schema">Schema</h3>
+<p>These functions let storage wrappers agree on the record structure they will be using for mirroring, etc.</p>
+<table class="doc-functions">
+    <thead><tr>
+            <th>result</th>
+            <th>function</th>
+    </tr></thead>
+    <tbody>
+        <tr><td>Array / Object</td>
+            <td><b>getSchema</b> ()<br>
+                <p>Returns a representation of record structure in the storage.</p></td></tr>
+        <tr><td>void</td>
+            <td><b>setSchema</b> (schema)<br>
+                <p>Tells the wrapper about what structure the records will have.</p>
+                <p>This is useful when creating new DB tables and in similar cases.</p></td></tr>
+    </tbody>
+</table>
+
 <h3 id="transactions">Transactions</h3>
 <table class="doc-functions">
     <thead><tr>
